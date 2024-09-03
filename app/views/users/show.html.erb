@@ -1,80 +1,80 @@
-<div class="container bg-white">
-  <!-- Infos principales de l'utilisateur -->
-  <div class="text-center">
-    <%= cl_image_tag @user.photo.key, height: 175, class: "my-3", alt: "photo de profil", radius: "max" %>
-    <h1 id="h1-profil"><%= @user.first_name %> <%= @user.last_name %></h1>
-    <span><%= @user.age %> ans</span>
-  </div>
-  <hr>
-  <div class="text-start">
-    <!-- Détails de l'utilisateur -->
-    <h4 class="">À propos</h4>
-    <p class="border rounded-3 p-3" style='text-align: justify;'><%= @user.description %></p>
-    <% if current_user.preferences != nil %>
-      <h4>Mes préférences</h4>
-      <p class='border rounded-3 p-3 mb-3' style='text-align: justify;'> <%= current_user.preferences %> </p>
-    <% end %>
-    <!-- Sloops de l'utilisateur / Si existants -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8 bg-white px-4">
+      <!-- Infos principales de l'utilisateur -->
+      <div class="text-center">
+        <%= cl_image_tag @user.photo.key, height: 175, class: "my-3", alt: "photo de profil", radius: "max" %>
+        <h1 class="text-primary"><%= @user.first_name %> <%= @user.last_name %></h1>
+        <span><%= @user.age %> ans</span>
+      </div>
+
+      <!-- Détails de l'utilisateur -->
+      <h3 class="text-start my-4">À propos</h3>
+      <p class='border-start rounded p-4 mb-3'><%= @user.description %></p>
+      <% if current_user.preferences != nil %>
+        <h3 class="text-start my-4">Préférences</h3>
+        <p class='border-start rounded p-4 mb-3'> <%= @user.preferences %> </p>
+      <% end %>
+
+      <!-- Sloops de l'utilisateur / Si existants -->
     <% if @user.sloops.any? %>
-      <h3 class="mb-4"> <%=  @user.sloops.size == 1 ? "Son Sloop" : "Ses Sloops" %></h3>
-      <div class="row">
+      <h2 class="mb-3 py-2" id="last_ask"> <%=  @user.sloops.size == 1 ? "Son Sloop" : "Ses Sloops" %></h2>
+      <div class= "row justify-content-center row-cols-lg-2">
         <% @user.sloops.each do |sloop| %>
           <%= render "shared/sloopcard", sloop: sloop %>
         <% end %>
       </div>
     <% end %>
-    <hr>
-    <!-- Les trajets proposés par l'utlisateur -->
-    <% if @user.rides.any? %>
-    <h2 class="mb-3 py-2" id="last_propal"> <%= @user.rides.size == 1 ? "Son voyage proposé" : "Ses voyages Proposés" %></h2>
-    <div class="row">
-      <% @user.rides.each do |ride| %>
-        <%= render "shared/cardride", ride: ride %>
-      <% end %>
-    </div>
-    <% end %>
-    <!-- Les demandes de trajet de l'utlisateur -->
-    <% if @user.ride_requests.any? %>
-    <h2 class="mb-3 py-2" id="last_ask"> <%= @user.ride_requests.size == 1 ? "Son voyage demandé" : "Ses voyages demandés"%></h2>
-    <div class="row">
-      <% @user.ride_requests.each do |riderequest| %>
-        <%= render "shared/riderequestcard", riderequest: riderequest %>
-      <% end %>
-    </div>
-    <% end %>
-    <hr>
-    <!-- Commentaires sur l'utlisateur -->
-    <div class="row">
-      <div class="col-12 col-sm-6">
-        <h3>Commentaires reçus</h3>
-        <% if @user.received_reviews.empty? %>
-          <small><em class="text-muted">Soyez le premier à ajouter un commentaire !</em></small>
-        <% end %>
-        <% @user.received_reviews.each do |review| %>
-          <div>
-            <% review.rating.times do %>
-              <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-            <% end %>
-            <small><em class="text-muted"> <%= l(review.created_at, format: "le %d %B %Y") %></i></em></small>
-            <p class="mb-0"><%= review.comment %></p>
-          </div>
-        <% end %>
-      </div>
-      <!-- Ajout de commentaires suite à un ride -->
-      <% if Ride.ride_exist?(current_user, @user) && current_user != @user %>
-        <div class="col-12 col-sm-6">
-          <div class="bg-white rounded p-3">
-            <h5>Ajoutez un commentaire suite à votre voyage</h5>
-            <%= simple_form_for [@user, @review] do |f| %>
-              <%= f.input :comment, label: 'Commentaire' %>
-              <%= f.input :rating, as: :select,
-              collection: (1..5), required: true, label: false,
-              input_html: { data: { controller: "star-rating" }} %>
-              <%= f.submit "Ajouter",class: "btn btn-primary mt-2" %>
-            <% end %>
-          </div>
+
+      <!-- Les trajets proposés par l'utlisateur -->
+      <% if @user.rides.any? %>
+        <h2 class="mb-3 py-2" id="last_propal"> <%= @user.rides.size == 1 ? "Son voyage proposé" : "Ses voyages Proposés" %></h2>
+        <div class= "row justify-content-center row-cols-lg-2">
+          <% @user.rides.each do |ride| %>
+            <%= render "shared/cardride", ride: ride %>
+          <% end %>
         </div>
       <% end %>
+
+      <!-- Les demandes de trajet de l'utlisateur -->
+      <% if @user.ride_requests.any? %>
+        <h2 class="mb-3 py-2" id="last_ask"> <%= @user.ride_requests.size == 1 ? "Son voyage demandé" : "Ses voyages demandés"%></h2>
+        <div class= "row justify-content-center row-cols-lg-2">
+          <% @user.ride_requests.each do |riderequest| %>
+            <%= render "shared/riderequestcard", riderequest: riderequest %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <!-- Commentaires sur l'utlisateur -->
+      <div class="text-start">
+        <h3 class="text-start">Commentaires reçus</h3>
+        <% if @user.received_reviews.empty? %>
+        <small><em class="text-muted">Soyez le premier à ajouter un commentaire suite à un voyage !</em></small>
+        <% end %>
+        <% @user.received_reviews.each do |review| %>
+        <div>
+          <% review.rating.times do %>
+            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+          <% end %>
+          <small><em class="text-muted"> &nbsp <%= l(review.created_at, format: "le %d %B %Y") %></i> par <%= review.poster.first_name %></em></small>
+          <p><%= review.comment %></p>
+        </div>
+        <% end %>
+
+        <!-- Ajout de commentaires suite à un ride -->
+        <% if Ride.ride_exist?(current_user, @user) && current_user != @user %>
+        <hr>
+        <h5 class="text-start">Ajoutez un commentaire suite à votre voyage</h5>
+        <%= simple_form_for [@user, @review] do |f| %>
+          <%= f.input :comment, label: 'Commentaire' %>
+          <%= f.input :rating, as: :select,
+          collection: (1..5), required: true, label: false,
+          input_html: { data: { controller: "star-rating" }} %>
+          <%= f.submit "Ajouter",class: "btn btn-primary my-3" %>
+        <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

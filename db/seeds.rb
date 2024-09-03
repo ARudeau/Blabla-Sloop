@@ -248,7 +248,7 @@ sloop3.save!
 puts "Sloop de Julien created!!"
 
 # Pour Fabien Dubois
-file26 = URI.open("https://scontent-cdg4-3.xx.fbcdn.net/v/t39.30808-6/277536938_5002385773173510_8102619474585914574_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=75d36f&_nc_ohc=9lZFaP8UFZ0Q7kNvgHXCefU&_nc_ht=scontent-cdg4-3.xx&oh=00_AYDZ7O0TPdM8L7qpbChx2LQhg_OAudnGXjokMAUgH7mEjg&oe=66D66768")
+file26 = URI.open("https://www.carnetdescapades.com/wp-content/uploads/2015/08/belem-mouillage.jpg.webp")
 sloop4 = Sloop.new(
   name: "Le Belem",
   description: "Avez-vous déjà rêvé de revivre les voyages d'autrefois ? Ce voilier ancien de cargaison vous transporte dans le temps, alliant charme historique et navigation authentique sur les mers.",

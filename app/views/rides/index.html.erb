@@ -7,7 +7,7 @@
     <i class="fa-solid fa-angle-left fa-2xl" style="color: #FFFFFF;"></i>
   <% end %>
 <% end %>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner.jpg" %>);">
+<div class="banner" style="object-fit: contain; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner.jpg" %>);">
           <h1 class="text-center my-4">Tous les voyages proposés</h1>
 </div>
 <div class="container mb-3">
@@ -51,9 +51,11 @@
           <% end %>
         </span>
       </div>
+      <div class="row">
       <% @rides.each do |ride| %>
         <%= render "shared/cardride", ride: ride %>
       <% end %>
+      </div>
       <p><br></p>
     </div>
   </div>
