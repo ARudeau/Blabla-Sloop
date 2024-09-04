@@ -24,7 +24,7 @@
 
 .fixed-map-size {
   width: 100%; /* Adapte l'image à la largeur du conteneur parent */
-  height: 250px; /* Fixe la hauteur de l'image */
-  object-fit: cover; /* Recadre l'image pour qu'elle couvre le conteneur tout en conservant son aspect ratio */
+  height: 250px; 
+  object-fit: cover;
 
 }

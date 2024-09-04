@@ -1,20 +1,24 @@
 // Specific CSS for your home-page
 #home-content {
-  padding: 25px 30px 25px;
+  padding: 25px 30px;
 }
 #hometitle {
-  font-size: 70px;
+  display: grid;
+  justify-content: space-around;
+  justify-items: end;
+  margin-bottom: 65px;
+  h1 {
+    font-size: 70px;
+    }
+    h2 {
+      color: white;
+      font-family: $body-font;
+      font-size: 20px;
+      text-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+      }
+
   img {
     padding-bottom: 7px;
     width: 55px;
-      }
+    }
   }
-#last_ask {
-  background-color: #FFF1D0;
-  border-radius: 10px;
-}
-
-#last_propal {
-  background-color: #b2dde1;
-  border-radius: 10px;
-}

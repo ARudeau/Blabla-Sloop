@@ -1,33 +1,29 @@
-
-<%# ##########Banner########################### %>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner.jpg" %>);">
-  <h1 id="hometitle"><%= image_tag "logo-sloop.png", class: "avatar" %> Blabla'Sloop</h1>
-  <div class="container mt-5" id="banner-content">
-    <strong><%= link_to "Vous avez un bateau", ride_requests_path, class: "btn btn-primary", id:"banner-bouton" %></strong>
+<div class="banner">
+  <div id="hometitle">
+  <h1><%= image_tag "logo-sloop.png" %> Blabla'Sloop</h1>
+  <h2>Trouve ton cobaturage !</h2>
   </div>
-  <div class="container mt-5" id="banner-content">
-    <strong><%= link_to "Vous cherchez un bateau", rides_path, class: "btn btn-primary", id:"banner-bouton" %></strong>
+  <div class= "d-grid gap-2 col-7 mx-auto d-md-flex justify-content-md-center pb-3">
+      <%= link_to "Voir les demandes", ride_requests_path, class: "btn btn-lg btn-success m-1"%>
+      <%= link_to "Voir les offres", rides_path, class: "btn btn-lg btn-warning m-1"%>
   </div>
 </div>
 
 
-<%# ########## purpose ########################### %>
-<div class="container pb-0" id="home-content">
-    <h2 class="mb-3 py-2", id="last_propal"><strong>Derniers voyages proposés</strong></h2>
-    <%# aller dans la table ride %>
-    <%# recuperer les 3 derniers proposer %>
-    <%# afficher les 3 derniere ride %>
+<div class="container" >
+
+    <h2 class="my-3 py-2", id="last_propal">Derniers voyages proposés</h2>
+    <div class= "row row-cols-sm-2 row-cols-lg-3">
     <% @rides.each do |ride| %>
       <%= render 'shared/cardride', ride: ride %>
     <% end %>
-<hr>
-</div>
-<div class="container pt-0" id="home-content">
-    <h2 class="mb-3 py-2", id="last_ask"><strong>Derniers voyages demandés</strong></h2>
-    <%# aller dans la table ride %>
-    <%# recuperer les 3 derniers proposer %>
-    <%# afficher les 3 derniere ride %>
+    </div>
+
+    <h2 class="my-3 py-2", id="last_ask"><strong>Derniers voyages demandés</strong></h2>
+    <div class= "row row-cols-sm-2 row-cols-lg-3">
     <% @rides_requests.each do |riderequest| %>
       <%= render 'shared/riderequestcard', riderequest: riderequest %>
     <% end %>
+    </div>
+
 </div>

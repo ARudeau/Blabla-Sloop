@@ -7,13 +7,14 @@
     <i class="fa-solid fa-angle-left fa-2xl" style="color: #FFFFFF;"></i>
   <% end %>
 <% end %>
-<div class="banner" style="object-fit: contain; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "banner.jpg" %>);">
-          <h1 class="text-center my-4">Tous les voyages proposés</h1>
-</div>
-<div class="container mb-3">
 
+<div class="banner d-flex justify-content-center align-items-center">
+  <h1>Les offres de Skippers</h1>
+</div>
+
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
+    <div class="col-sm-9 col-lg-6 my-3">
       <%= form_with url: rides_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -28,35 +29,19 @@
     </div>
   </div>
 
-  <div class="cards mt-2">
-    <div class="row">
-      <div>
-        <div class="d-flex justify-content-evenly align-items-center mb-3">
-          <%= link_to "Demander un voyage", new_ride_request_path, class: "btn btn-primary" %>
-        </div>
-        </div>
-        </div>
-        <hr>
-        <span class="mb-3 d-block">
-          <% if @rides.empty? %>
-            <em><%= " Aucune proposition de voyage disponible pour le moment." %>
-            </em>
-            <br>
-            <br>
-
-          <% else %>
-            <span class="mb-3 d-block"><em>
-              <%= "#{pluralize(@rides.count, @rides.size == 1 ? "Résultat" : "Résultats")}"  %></em>
-            </span>
-          <% end %>
-        </span>
-      </div>
-      <div class="row">
-      <% @rides.each do |ride| %>
-        <%= render "shared/cardride", ride: ride %>
-      <% end %>
-      </div>
-      <p><br></p>
-    </div>
+  <div class=" d-flex mb-3">
+    <%= link_to "Publier une demande", new_ride_request_path, class: "btn btn-primary" %>
   </div>
+
+  <% if @rides.empty? %>
+    <span  class="mb-3 d-block"><em><%= "Aucune proposition de voyage disponible pour le moment." %></em></span>
+  <% else %>
+    <span  class="mb-3 d-block"><em><%= @rides.count %> <%= @rides.size == 1 ? "résultat" : "résultats" %></em></span>
+  <% end %>
+
+    <div class= "row row-cols-sm-2 row-cols-lg-3">
+    <% @rides.each do |ride| %>
+      <%= render 'shared/cardride', ride: ride %>
+    <% end %>
+    </div>
 </div>

@@ -1,0 +1,47 @@
+body {
+  position: relative;
+  margin-bottom: 80px;
+  color: $darkgreen;
+  h1 {
+    color: $paleyellow;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+  
+  }
+  h2 {
+    color: $darkgreen;
+    text-align: center;
+    font-weight: bold;
+  }
+  h3, h4, h5 {
+    font-family: $body-font;
+    color: $darkgreen;
+    text-align: center;
+    font-weight: bold;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+
+.back-arrow {
+  position: absolute;
+  margin-left: 20px;
+  top: 30px;
+  z-index: 10;
+}
+
+#last_ask {
+  background-color: #FFF1D0;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+#last_propal {
+  background-color: #b2dde1;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
